@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="database.integration.service.EmployeeServiceIT" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-23T12:54:50" hostname="LOCALHOST" time="0.547">
+  <properties/>
+  <testcase name="findPhoneNumbersByOrderByPhoneNumberAsc()" classname="database.integration.service.EmployeeServiceIT" time="0.547"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2024-02-23T15:54:50.521+03:00  WARN 14368 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+Hibernate: 
+    select
+        e1_0.phone_number 
+    from
+        employees e1_0 
+    order by
+        e1_0.id offset ? rows fetch first ? rows only
+2024-02-23T15:54:51.436+03:00  INFO 14368 --- [    Test worker] by.service.EmployeeService               : Attempt to extract PhoneNumbers collection in the form of page in method findAllByOrderByName(): {}
+[8(936)-512-38-74, 8(977)-55538-55, 8(936)-512-38-74, 8-992-555-10-00]
+8(936)-512-38-74
+8(977)-55538-55
+8(936)-512-38-74
+8-992-555-10-00
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список работников</title>
+</head>
+<body>
+
+<h2>Список всех работников:</h2>
+<br>
+<div th:each="empl:${employees}">
+    <form th:action="@{/employees/{id}(id=${empl.id})}" method="get" th:object="${empl}">
+        <li th:text="'Address: ' + ${empl.address}"></li>
+        <li th:text="'DateBirth: ' + ${empl.dateBirth}"></li>
+        <li th:text="'lastName: ' + ${empl.lastName}"></li>
+        <li th:text="'MiddleName: ' + ${empl.middleName}"></li>
+        <li th:text="'Name: ' + ${empl.name}"></li>
+        <li th:text="'PhoneNumber: ' +${empl.phoneNumber}"></li>
+        <li th:text="'Rank: ' + ${empl.rank.rankName}"></li>
+        <li th:text="'Salary: ' + ${empl.rank.salary}"></li>
+        <br>
+        <button type="submit">Change</button>
+        <br>
+        <br>
+    </form>
+</div>
+</body>
+</html>
