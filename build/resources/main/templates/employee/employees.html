@@ -10,19 +10,26 @@
 <br>
 <div th:each="empl:${employees}">
     <form th:action="@{/employees/{id}(id=${empl.id})}" method="get" th:object="${empl}">
-        <li th:text="'Address: ' + ${empl.address}"></li>
-        <li th:text="'DateBirth: ' + ${empl.dateBirth}"></li>
-        <li th:text="'lastName: ' + ${empl.lastName}"></li>
-        <li th:text="'MiddleName: ' + ${empl.middleName}"></li>
-        <li th:text="'Name: ' + ${empl.name}"></li>
-        <li th:text="'PhoneNumber: ' +${empl.phoneNumber}"></li>
-        <li th:text="'Rank: ' + ${empl.rank.rankName}"></li>
-        <li th:text="'Salary: ' + ${empl.rank.salary}"></li>
+        <li th:text="'Address: ' + *{address}"></li>
+        <li th:text="'DateBirth: ' + *{dateBirth}"></li>
+        <li th:text="'lastName: ' + *{lastName}"></li>
+        <li th:text="'MiddleName: ' + *{middleName}"></li>
+        <li th:text="'Name: ' + *{name}"></li>
+        <li th:text="'PhoneNumber: ' + *{phoneNumber}"></li>
+        <li th:text="'Rank: ' + *{rank.rankName}"></li>
+        <li th:text="'Salary: ' + *{rank.salary}"></li>
         <br>
         <button type="submit">Change</button>
         <br>
-        <br>
     </form>
 </div>
+<br>
+<form action="employees/registration" method="get">
+    <button type="submit">New Employee</button>
+</form>
+<br>
+<form action="/login" method="get">
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>

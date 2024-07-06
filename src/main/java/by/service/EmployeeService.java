@@ -78,7 +78,14 @@ public class EmployeeService {
     public void updateAddress(String address, Long id) {
         employeesRepository.updateAddress(address, id);
         log.info("Attempt to update address in Employee object by your id, in method updateAddress()");
+    }
 
+    public Optional<EmployeeDto> update(Long id, FromDtoToEmployee fromDtoToEmployee) {
+        log.info("Attempt to update  in Employee object by your id, in method update()");
+        return employeesRepository.findById(id)
+                .map(employee -> dtoToEmployee.mapFrom(fromDtoToEmployee))
+                .map(employeesRepository::saveAndFlush)
+                .map(employeeToDto::mapFrom);
     }
 
     public boolean delete(Long id) {

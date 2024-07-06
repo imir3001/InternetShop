@@ -2,7 +2,7 @@ package by.service;
 
 
 import by.database.repository.UserRepository;
-import by.dto.user_dto.FromUserDtoToBase;
+import by.dto.user_dto.FromDtoToUser;
 import by.dto.user_dto.UserDto;
 import by.mapper.classes.users.DtoToUser;
 import lombok.RequiredArgsConstructor;
@@ -24,17 +24,17 @@ public class UserService {
         Optional<UserDto> result = userRepository.findByPassword(password)
                 .map(userToDto::mapFrom);
         if (result.isEmpty()) {
-            log.warn("The password is not exist: {}", password);
+            log.warn("The password is not exist!");
         } else {
             log.info("The User with name {} was login", result.get().getName());
         }
         return result;
     }
 
-    public Long saveUser(FromUserDtoToBase fromUserDtoToBase) {
-        var user = dtoToUser.mapFrom(fromUserDtoToBase);
+    public Long save(FromDtoToUser fromDtoToUser) {
+        var user = dtoToUser.mapFrom(fromDtoToUser);
         var result = userRepository.save(user);
-        log.info("Attempt to save fromUserDtoToBase object in method saveUser()");
+        log.info("Attempt to save fromUserDtoToBase object in method save()");
         return result.getId();
     }
 

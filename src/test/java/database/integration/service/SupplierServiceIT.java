@@ -42,13 +42,30 @@ public class SupplierServiceIT {
     }
 
     @Test
-    public void update() {
+    public void updateEmail() {
         Long id = 2L;
         String email = "tail222@gmail.com";
-        supplierService.update(email,id);
+        supplierService.updateEmail(email,id);
         var supplier = supplierService.findById(id);
         assertTrue(supplier.isPresent());
         assertEquals(email,supplier.get().getEmail());
+    }
+
+    @Test
+    public void update(){
+        Long id = 5L;
+        FromSupplierDtoToBase dtoToBase = FromSupplierDtoToBase.builder()
+                .address("NovoSibirsk, d23")
+                .email("tail222@gmail.com")
+                .name("Gills&Fins")
+                .phoneNumber("8(345)-123-23-34")
+                .build();
+        var result = supplierService.update(id,dtoToBase);
+        assertTrue(result.isPresent());
+        assertEquals(dtoToBase.getAddress(),result.get().getAddress());
+        assertEquals(dtoToBase.getEmail() , result.get().getEmail());
+        assertEquals(dtoToBase.getName() , result.get().getName());
+        assertEquals(dtoToBase.getPhoneNumber() , result.get().getPhoneNumber());
     }
 
     @Test

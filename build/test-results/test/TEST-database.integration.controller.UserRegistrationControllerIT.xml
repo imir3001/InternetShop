@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="database.integration.controller.UserRegistrationControllerIT" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-03-20T08:13:48" hostname="LOCALHOST" time="0.692">
+  <properties/>
+  <testcase name="delete()" classname="database.integration.controller.UserRegistrationControllerIT" time="0.692"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.birthday,
+        u1_0.name,
+        u1_0.password,
+        u1_0.status 
+    from
+        users u1_0 
+    where
+        u1_0.password=?
+2024-03-20T11:13:49.022+03:00  INFO 13076 --- [    Test worker] by.service.UserService                   : Attempt to delete User object by your password, in method delete()
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -16,6 +16,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product save(Product product);
 
+    Product saveAndFlush(Product product);
+
     @Modifying
     @Query("""
             update Product p

@@ -1,23 +1,14 @@
 package by.http;
 
-import by.database.entity.Category;
 import by.dto.category_dto.FromDtoToCategory;
-import by.utils.JspHelper;
 import by.service.CategoryService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -57,7 +48,7 @@ public class CategoryController {
     public String save(Model model, FromDtoToCategory category){
         var dto = categoryService.save(category);
         model.addAttribute("category", category);
-        return "redirect:/categories/" + dto.getCategory();
+        return "redirect:/categories/" + dto.getId();
     }
 
     //TODO
@@ -75,6 +66,4 @@ public class CategoryController {
         }
         return "redirect:/categories";
     }
-
-
 }

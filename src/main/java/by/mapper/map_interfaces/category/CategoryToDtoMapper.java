@@ -11,7 +11,7 @@ import org.mapstruct.factory.Mappers;
 public interface CategoryToDtoMapper {
     CategoryToDtoMapper INSTANCE = Mappers.getMapper(CategoryToDtoMapper.class);
 
-    @Mapping(source = "category.id", target = "category")
+    //@Mapping(source = "category.id", target = "category")
     CategoryDto fromCategory(Category category);
 
 }

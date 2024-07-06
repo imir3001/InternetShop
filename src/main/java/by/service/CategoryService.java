@@ -36,7 +36,7 @@ public class CategoryService {
         log.info("Attempt to extract categoryDto object in method findById()");
 
         return categoryRepository.findById(id).map(category -> CategoryDto.builder()
-                .category(category.getId())
+                .id(category.getId())
                 .categoryName(category.getCategoryName())
                 .build());
     }

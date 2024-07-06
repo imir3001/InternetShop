@@ -41,11 +41,12 @@
     </label>
     <br>
     <br>
-    <div th:each="greid : ${greids}">
-        <input th:id="${greid}" type="radio" name="rank" th:value="${greid}"
-               th:checked="${greid == employee.rank.rankName}">
+    <div th:each="ran : ${ranks}">
 
-        <label th:for="${greid}" th:text="${greid}">Rank name</label>
+        <input th:id="'rank_' + ${ran.rankName}" type="radio" name="rank" th:value="${ran.id}"
+               th:checked="${ran.id == employee.rank.id}">
+
+        <label th:for="'rank_' + ${ran.rankName}" th:text="${ran.rankName}">Rank name</label>
     </div>
     <br>
     <br>
@@ -53,8 +54,12 @@
 </form>
 <br>
 
-<form th:action="@{/employees/{id}/delete(id=${employee.id})}"th:if="${employee.rank.rankName.name() == 'MANAGER'}" method="post">
+<form th:action="@{/employees/{id}/delete(id=${employee.id})}"th:if="${employee.rank.rankName == 'MANAGER'}" method="post">
     <button type="submit">Remove</button>
+</form>
+<br>
+<form action="/login" method="get">
+    <button type="submit">Logout</button>
 </form>
 </body>
 </html>

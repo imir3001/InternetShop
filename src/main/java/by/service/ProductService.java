@@ -34,22 +34,37 @@ public class ProductService {
         return productsRepository.findById(id).map(productToDto::mapFrom);
     }
 
-    public void save(FromProductDtoToBase fromProductDtoToBase) {
+    public ProductDto save(FromProductDtoToBase fromProductDtoToBase) {
         log.info("Attempt to save fromProductDtoToBase object in method save()");
-
-        var product = dtoToProduct.mapFrom(fromProductDtoToBase);
-        productsRepository.save(product);
+        return Optional.of(fromProductDtoToBase)
+                .map(dtoToProduct::mapFrom)
+                .map(productsRepository::save)
+                .map(productToDto::mapFrom)
+                .orElseThrow();
     }
 
     public void updateProductPriceForOneById(Long priceForOne, Long id) {
         productsRepository.updateProductPriceForOneById(priceForOne, id);
         log.info("Attempt to update price for one product " +
                  "by id for object Product in method updateProductPriceForOneById()");
-
     }
 
-    public void delete(Long id) {
-        productsRepository.deleteById(id);
+    public Optional<ProductDto> update(Long id, FromProductDtoToBase fromProductDtoToBase) {
+        log.info("Attempt to update in method update()");
+        return productsRepository.findById(id)
+                .map(product -> dtoToProduct.mapFrom(fromProductDtoToBase))
+                .map(productsRepository::saveAndFlush)
+                .map(productToDto::mapFrom);
+    }
+
+    public boolean delete(Long id) {
         log.info("Attempt to delete Product object by your id, in method delete()");
+        return productsRepository.findById(id)
+                .map(product -> {
+                    productsRepository.deleteById(product.getId());
+                    productsRepository.flush();
+                    return true;
+                })
+                .orElse(false);
     }
 }

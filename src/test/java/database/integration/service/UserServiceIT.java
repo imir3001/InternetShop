@@ -3,7 +3,7 @@ package database.integration.service;
 
 import annotation.IT;
 import by.database.entity.UserStatus;
-import by.dto.user_dto.FromUserDtoToBase;
+import by.dto.user_dto.FromDtoToUser;
 import by.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -23,14 +23,14 @@ public class UserServiceIT {
     }
 
     @Test
-    public void saveUser(){
-        FromUserDtoToBase user = FromUserDtoToBase.builder()
+    public void save(){
+        FromDtoToUser user = FromDtoToUser.builder()
                 .name("Ron")
                 .birthday("1990-01-24")
                 .password("34er67")
                 .status(String.valueOf(UserStatus.ADMIN))
                 .build();
-        userService.saveUser(user);
+        userService.save(user);
     }
 
     @Test

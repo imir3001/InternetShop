@@ -6,7 +6,7 @@
 </head>
 <body>
 <!-- -->
-<form th:action="@{/categories/{id}/update(id=${category.category})}" method="post" th:object="${category}">
+<form th:action="@{/categories/{id}/update(id=${category.id})}" method="post" th:object="${category}">
     <label for="categoryName">CategoryName:
     <input id="categoryName" type="text" name="categoryName" th:value="*{categoryName}">
     </label><br>
@@ -14,9 +14,12 @@
 
 </form>
 
-<form th:action="@{/categories/{id}/delete(id=${category.category})}" method="post">
+<form th:action="@{/categories/{id}/delete(id=${category.id})}" method="post">
     <button type="submit">Remove</button>
 </form>
-
+<br>
+<form action="/login" method="get">
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>

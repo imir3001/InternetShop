@@ -17,6 +17,8 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 
     Supplier save(Supplier supplier);
 
+    Supplier saveAndFlush(Supplier supplier);
+
 
     @Modifying
     @Query("""

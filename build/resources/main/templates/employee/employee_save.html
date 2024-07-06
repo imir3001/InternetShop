@@ -41,19 +41,20 @@
     </label>
     <br>
     <br>
-    <div th:each="rank : ${ranks}">
-        <input th:id="'rank_' + ${rank.rankName}" type="radio" name="rank" th:value="${rank.rankName}">
-<!--               th:checked="${rank.rankName == employee.rank.rankName}">-->
-        <label th:for="'rank_' + ${rank.rankName}" th:text="${rank.rankName.name()}">Rank name</label>
+    <div th:each="ran : ${ranks}">
+
+        <input th:id="'rank_' + ${ran.rankName}" type="radio" name="rank" th:value="${ran.id}">
+
+        <label th:for="'rank_' + ${ran.rankName}" th:text="${ran.rankName}">Rank name</label>
         <br>
-        
     </div>
-    <label for="salary">Salary:
-        <input id="salary" type="number" name="salary" th:value="${0}">
-    </label>
     <br>
     <br>
     <button type="submit">Save</button>
+</form>
+<br>
+<form action="/login" method="get">
+    <button type="submit">Logout</button>
 </form>
 </body>
 </html>

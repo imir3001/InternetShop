@@ -34,22 +34,39 @@ public class SupplierService {
         return suppliersRepository.findById(id).map(supplierToDto::mapFrom);
     }
 
-    public void save(FromSupplierDtoToBase fromSupplierDtoToBase) {
-        var supplier = dtoToSupplier.mapFrom(fromSupplierDtoToBase);
-        suppliersRepository.save(supplier);
+    public SupplierDto save(FromSupplierDtoToBase fromSupplierDtoToBase) {
         log.info("Attempt to save fromSupplierDtoToBase object in method save()");
-
+        return Optional.of(fromSupplierDtoToBase)
+                .map(dtoToSupplier::mapFrom)
+                .map(suppliersRepository::save)
+                .map(supplierToDto::mapFrom)
+                .orElseThrow();
     }
 
-    public void update(String email, Long id) {
+    public void updateEmail(String email, Long id) {
         suppliersRepository.updateEmail(email, id);
-        log.info("Attempt to update email by id for object Supplier in method update()");
+        log.info("Attempt to update email by id for object Supplier in method updateEmail()");
 
     }
 
-    public void delete(Long id) {
-        suppliersRepository.deleteById(id);
+    public Optional<SupplierDto> update(Long id, FromSupplierDtoToBase fromSupplierDtoToBase) {
+        log.info("Attempt to update email by id for object Supplier in method update()");
+        return suppliersRepository.findById(id)
+                .map(supplier -> dtoToSupplier.mapFrom(fromSupplierDtoToBase))
+                .map(suppliersRepository::saveAndFlush)
+                .map(supplierToDto::mapFrom);
+    }
+
+
+    public boolean delete(Long id) {
         log.info("Attempt to delete Supplier object by your id, in method delete()");
+        return suppliersRepository.findById(id)
+                .map(supplier -> {
+                    suppliersRepository.deleteById(supplier.getId());
+                    suppliersRepository.flush();
+                    return true;
+                })
+                .orElse(false);
     }
 
     public List<String> listPhoneNumbers() {

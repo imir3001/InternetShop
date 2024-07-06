@@ -24,6 +24,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     Employee save(Employee employee);
 
+    Employee saveAndFlush(Employee employee);
+
     @Modifying
     @Query("""
             update Employee e 

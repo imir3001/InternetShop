@@ -31,7 +31,7 @@ public class Product implements BaseEntity<Long> {
     @Column(name = "price_for_one")
     private Long priceForOne;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 }
